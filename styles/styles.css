@@ -1,0 +1,125 @@
+/*Commons & fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700&display=swap');
+@import url('./animations.css');
+*{
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+body{
+    font-family: 'Mulish', sans-serif;
+}
+html { height: 100%; overflow:auto; }
+body { height: 100%; }
+
+/*Index styles*/
+#indexBody header{
+    background: rgb(191,191,191);
+    background: linear-gradient(180deg, rgba(191,191,191,1) 0%, rgba(255,255,255,1) 100%);
+    color: #000;
+}
+
+.scrolled{
+    background-color: #fff;
+    border-bottom: 1px solid #000;
+}
+#searchInput{
+    border: 1px solid gray;
+}
+#searchInput:active, #searchInput:focus{
+    outline: 1px solid black;
+}
+#loginButton{
+    background-color: rgba(191,191,191,0) !important;
+}
+#indexBody .navbar a, .navbar span{
+    text-decoration: none;
+    color: #000;
+}
+.filterLink{
+    cursor: pointer !important;
+}
+#indexBody #hero{
+    height: 70vh !important;
+    color: #000;
+    padding-top: 150px;
+}
+
+#indexBody #filters{
+    background-color: rgb(235, 235, 235);
+}
+
+.filterTitle{
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+#indexBody #filters input{
+    border: none;
+    margin: 5px 0;
+    padding: 5px;
+}
+
+.product-card{
+    margin-top: 15px;
+}
+
+.product-card-price{
+    font-size: 15px;
+}
+.product-card-img{
+    width: 274px;
+    height: 274px;
+    padding-top: 5px;
+}
+.product-title{
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.product-card-viewProduct i:hover, #backIndex{
+    cursor: pointer;
+}
+
+#amountSelector, #ppTalleSelector{
+    width: 80px;
+}
+
+#btnAddToCart{
+    cursor: pointer;
+}
+#btnAddToCart:hover{
+    padding: 10px;
+ border-bottom: 1px solid black;
+ border-left: 2px solid black;
+
+}
+
+footer{
+    background-color: #000;
+}
+
+.badge {
+    padding-left: 9px;
+    padding-right: 9px;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    border-radius: 9px;
+  }
+  
+  .label-warning[href],
+  .badge-warning[href] {
+    background-color: #c67605;
+  }
+  #lblCartCount {
+      font-size: 12px;
+      background: #f7dd36;
+      color: #fff;
+      padding: 2px 5px;
+      vertical-align: top;
+      margin-left: -10px; 
+  }
+
+  .cart-img{
+    width: 80px;
+  }

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda JS</title>
+    <link rel="icon" type="image/x-icon" href="./assets/img/favicon.png">
+    <!--Styles & Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body id="indexBody">
+    <header>
+        <nav id="navbar" class="navbar navbar-expand-lg navbar-light fixed-top">
+            <a class="navbar-brand d-flex flex-row align-items-center p-2" href="./index.html">
+                Newpilcha
+            </a>
+            <button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav  mx-auto">
+                    <li class="nav-item active">
+                      <span id="filterByNew" class="nav-link filterLink">Nuevo</span>
+                    </li>
+                    <li class="nav-item">
+                      <span id="filterByAccesories" class="nav-link filterLink">Accesorios</a>
+                    </li>
+                    <li class="nav-item">
+                      <span id="filterByMale" class="nav-link filterLink">Hombre</span>
+                    </li>
+                    <li class="nav-item">
+                        <span id="filterByFemale" class="nav-link filterLink">Mujer</span>
+                      </li>
+                      <li class="nav-item">
+                        <span id="filterByUnisex" class="nav-link filterLink">Unisex</span>
+                      </li>
+                    <li class="nav-item">
+                        <i id="searchIcon" class="fa-solid fa-magnifying-glass p-2 mt-1"></i>
+                        <input id="searchInput" class="d-none" type="text">
+                    </li>
+                    <li class="nav-item">
+                        <a href="./pages/carrito.html">
+                            <i class="fa-solid fa-cart-shopping p-2 mt-1"></i>
+                            <span class='badge badge-warning d-none' id='lblCartCount'> </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <button id="loginButton" type="button" class="" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <i class="fa-solid fa-user p-2 mt-1"></i>
+                        </button>
+                    </li>
+                  </ul>
+            </div>
+        </nav>
+        <!--Modal login-->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div id="loginModal" class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title mx-auto" id="exampleModalLabel">I N I C I A R / S E S I O N</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="loginForm" class="d-flex flex-column">
+                                <label for="inputLoginMail">✉️ E-mail</label>
+                                <input class="border p-2 my-2" type="mail" id="inputLoginMail" name="inputLoginMail">
+                                <br>
+                                <label for="inputLoginPassword">🔒 Contraseña</label>
+                                <input class="border p-2 my-2" type="password" id="inputLoginPassword" name="inputLoginPassword">
+                                <br><br>
+                                <div class="col">
+                                    <input type="checkbox" id="LoginCheckBox" name="LoginCheckBox" value="LoginCheckBox">
+                                    <label for="LoginCheckBox"> Mantener sesion iniciada</label><br>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer d-flex flex-column">
+                        <div id="loginAlerts">
+
+                        </div>
+                        <div>
+                            <button id="loginBtn" type="button" class="btn btn-warning">Iniciar sesión</button>
+                            <button id="openRegisterModal" class="btn btn-primary">Registrarse</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="registerModal" class="modal-content d-none">
+                    <div class="modal-header">
+                        <h5 class="modal-title mx-auto" id="exampleModalLabel">R E G I S T R O</h5>
+                        <button id="closeRegisterModal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body d-flex flex-column justify-content-center">
+                            <form id="registerForm" class="d-flex flex-column ">
+                                <label for="registerName">😁  Nombre</label>
+                                <input class="border p-2 my-2" type="text" id="registerName" name="registerName">
+                                <br>
+                                <label for="registerMail">✉️ E-mail</label>
+                                <input class="border p-2 my-2" type="mail" id="registerMail" name="registerMail">
+                                <br>
+                                <label for="registerPassword">🔒 Contraseña</label>
+                                <input class="border p-2 my-2" type="password" id="registerPassword" name="registerPassword">
+                                <br>
+                                <label for="registerRepeatPassword">🔒 Repetí la contraseña</label>
+                                <input class="border p-2 my-2" type="password" id="registerRepeatPassword" name="registerRepeatPassword">
+                                <br><br>
+                            </form>
+                        </div>
+                        <div class="modal-footer d-flex flex-column">
+                            <div id="registerAlerts">
+
+                            </div>
+                        <button id="registerBtn" type="button" class="btn btn-warning">Registrarse</button>
+                    </div>
+                </div>
+                <div id="loggedModal" class="modal-content d-none">
+                    <div class="modal-header">
+                        <button id="closeRegisterModal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body d-flex flex-column justify-content-center">
+                            <p>Bienvenido <span id="loggedUserName"></span></p>
+                        </div>
+                        <div class="modal-footer d-flex flex-column">
+                        <button id="logOut" type="button" class="btn btn-outline-danger"><i class="fa-solid fa-power-off"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="hero" class="jumbotron jumbotron-fluid d-flex flex-column justify-content-center">
+            <div class="container">
+                <h1 class="display-4">😎 Vestite bien, vestí Newpilcha.</h1>
+                <p class="lead">El estilo ya no es para algunos, acá enemos lo que necesitas para salir a la calle y romperla toda!</p>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section id="specsCards" class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-4">
+                    <div class="card d-flex flex-column align-items-center p-2">
+                        <i class="h3 pt-2 text-center fa-solid fa-truck"></i>
+                        <h4 class="my-3">Envíos a todo el país</h4>
+                        <p>No importa donde te encuentres, si vivís dentro de Argentina nosotros te lo hacemos llegar.</p>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="card d-flex flex-column align-items-center p-2">
+                        <i class="h3 pt-2 text-center fa-solid fa-shield"></i>
+                        <h4 class="my-3">Compra segura</h4>
+                        <p>Vos solo te encargas de comprar, nuestros desarrolladores van a proteger muy bien tus datos.</p>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="card d-flex flex-column align-items-center p-2">
+                        <i class="h3 pt-2 text-center fa-solid fa-credit-card"></i>
+                        <h4 class="my-3">Pagá como quieras</h4>
+                        <p>Aceptamos todas las tarjetas de crédito, rapipago, pagofácil, entre muchas opciones más.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="products" class="container-fluid">
+            <h1 class="text-center my-5 h3"><em>Newpilcha - Urban Clothes</em></h1>
+            <div class="row">
+                <div id="filters" class="col-sm-12 col-lg-3 p-5">
+                    <h5 class="mb-5 text-center">F I L T R O S</h5>
+                    <span class="filterTitle"><b>$</b> Precio</span>
+                    <div class="mb-5">
+                        <input id="minPriceInput" type="number" placeholder="Min">
+                        <input id="maxPriceInput" type="number" placeholder="Max">
+                        <button id="priceFilterButton" type="button" class="btn w-100 mt-2 btn-outline-dark">FILTRAR</button>
+                    </div>
+                    <span class="filterTitle"><b><i class="fa-solid fa-boxes-stacked"></i></b> Por categoría</span>
+                    <br>
+                    <input type="checkbox" id="maleClothes" name="maleClothes" value="m">
+                    <label for="maleClothes"> Prendas masculinas</label><br>
+                    <input type="checkbox" id="femaleClothes" name="femaleClothes" value="f">
+                    <label for="femaleClothes"> Prendas femeninas</label><br>
+                    <input type="checkbox" id="unisexClothes" name="unisexClothes" value="u">
+                    <label for="unisexClothes"> Prendas unisex</label><br>
+                    <input type="checkbox" id="shoes" name="shoes" value="c">
+                    <label for="shoes"> Calzado</label><br>
+                    <input type="checkbox" id="accesories" name="accesories" value="a">
+                    <label for="accesories"> Accesorios</label><br>
+                    <button id="genderFilterButton" type="button" class="btn w-100 mt-2 btn-outline-dark">FILTRAR</button>
+
+                </div>
+                <div class="col-sm-12 col-lg-9">
+                    <div id="productListContainer" class="row ps-2">
+                        <!--Inyected cards VIA JS-->
+                        <!-- <div class="product-card-container col-sm-12 col-md-6 col-lg-4">
+                            <div class="card product-card d-flex flex-column align-items-center">
+                                <img class="product-card-img" src="https://cf.shopee.ph/file/679a8045afccb1bfcd0c3571e69f2f96" alt="">
+                                <h6 class="product-title mt-4"><b>REMERON URBAN KING</b></h6>
+                                <hr class="w-75 mx-auto mb-2">
+                                <div class="row">
+                                    <div class="col-7 d-flex flex-row my-3 justify-content-end">
+                                        <span class="product-card-price badge bg-dark py-2 px-2"><b>$</b> 7.499</span>
+                                    </div>
+                                    <div class="col-5 d-flex justify-content-center align-items-center">
+                                        <span class="product-card-addCart"><i class="fa-solid fa-cart-shopping"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="productPage" class="container d-none">
+            <!--Plantilla para productos-->
+            <div class="row mt-5">
+                <div class="row mb-5">
+                    <div class="col">
+                        <i id="backIndex" class="fa-solid fa-arrow-left h2 text-warning mt-3"></i>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 d-flex justify-content-center">
+                    <img id="ppProductImg" class="img-fluid h-75 border shadow" src="">
+                </div>
+                <div class="col-sm-12 col-md-6 d-flex flex-column align-items-center">
+                   <h3 id="ppProductTitle" class="mb-3 text-white bg-dark p-2 rounded">TITULO DEL PRODUCTO</h3>
+                   <em id="ppProductDescription" class="text-center">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</em>
+                   <h3 id="ppProductPrice" class="mt-5"> $3.000 </h3>
+                   <div id="ppTalles" class="mt-3">
+
+                   </div>
+
+                <span class="mt-5"><i class="fa-solid fa-cart-shopping h5 bg-dark rounded text-white p-2"></i> AGREGAR AL CARRITO</span>
+
+                </div>
+            </div>
+        </section>
+    </main>
+    <svg id="wave" style="transform:rotate(0deg); transition: 0.3s" viewBox="0 0 1440 310" version="1.1" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="sw-gradient-0" x1="0" x2="0" y1="1" y2="0"><stop stop-color="rgba(0, 0, 0, 1)" offset="0%"></stop><stop stop-color="rgba(0, 0, 0, 1)" offset="100%"></stop></linearGradient></defs><path style="transform:translate(0, 0px); opacity:1" fill="url(#sw-gradient-0)" d="M0,93L80,113.7C160,134,320,176,480,201.5C640,227,800,238,960,217C1120,196,1280,145,1440,118.8C1600,93,1760,93,1920,93C2080,93,2240,93,2400,108.5C2560,124,2720,155,2880,155C3040,155,3200,124,3360,134.3C3520,145,3680,196,3840,196.3C4000,196,4160,145,4320,129.2C4480,114,4640,134,4800,144.7C4960,155,5120,155,5280,134.3C5440,114,5600,72,5760,72.3C5920,72,6080,114,6240,129.2C6400,145,6560,134,6720,155C6880,176,7040,227,7200,222.2C7360,217,7520,155,7680,129.2C7840,103,8000,114,8160,144.7C8320,176,8480,227,8640,232.5C8800,238,8960,196,9120,196.3C9280,196,9440,238,9600,248C9760,258,9920,238,10080,191.2C10240,145,10400,72,10560,67.2C10720,62,10880,124,11040,124C11200,124,11360,62,11440,31L11520,0L11520,310L11440,310C11360,310,11200,310,11040,310C10880,310,10720,310,10560,310C10400,310,10240,310,10080,310C9920,310,9760,310,9600,310C9440,310,9280,310,9120,310C8960,310,8800,310,8640,310C8480,310,8320,310,8160,310C8000,310,7840,310,7680,310C7520,310,7360,310,7200,310C7040,310,6880,310,6720,310C6560,310,6400,310,6240,310C6080,310,5920,310,5760,310C5600,310,5440,310,5280,310C5120,310,4960,310,4800,310C4640,310,4480,310,4320,310C4160,310,4000,310,3840,310C3680,310,3520,310,3360,310C3200,310,3040,310,2880,310C2720,310,2560,310,2400,310C2240,310,2080,310,1920,310C1760,310,1600,310,1440,310C1280,310,1120,310,960,310C800,310,640,310,480,310C320,310,160,310,80,310L0,310Z"></path></svg>
+    <footer class="text-center text-lg-start">
+        <!-- Copyright -->
+        <div class="text-center p-3 text-white">
+          © 2020 Copyright:
+          <a class="text-white" href="./index.html">Newpilcha</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!--JS & Bootstrap-->
+    <script src="./js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/830d610cc9.js" crossorigin="anonymous"></script>
+
+</body>
+</html>
