@@ -176,6 +176,7 @@ class Producto {
 
     }
     listarProductos(productos);
+    actBtnView();
   }).catch(err => {
     console.log(err);
   });
@@ -512,9 +513,7 @@ class Producto {
     });
 
   }
-  setTimeout(()=>{
-    actBtnView();
-  },200);
+
 
 
   //Cantidad de articulos en el carrito
