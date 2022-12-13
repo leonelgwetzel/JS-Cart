@@ -236,7 +236,8 @@ class Producto {
       let productCard = document.createElement('div');
       productCard.classList.add('card', 'product-card', 'd-flex', 'flex-column', 'align-items-center');
         let productImg = document.createElement('img');
-          productImg.classList.add('product-card-img','w-100');
+          productImg.classList.add('product-card-img');
+          productImg.classList.add('w-100');
           productImg.setAttribute('src', `${array[p].img}`);
       let productTitle = document.createElement('h6');
         productTitle.innerHTML = array[p].nombre;
